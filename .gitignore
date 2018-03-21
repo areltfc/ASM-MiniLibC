@@ -1,0 +1,8 @@
+#*#
+*~
+a.out
+*.o
+libasm.so
+*.gcda
+*.gcno
+MiniLibC-tests
