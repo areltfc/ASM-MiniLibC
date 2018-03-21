@@ -1,8 +1,8 @@
 /*
-1;4205;0c1;4205;0c** EPITECH PROJECT, 2018
+** EPITECH PROJECT, 2018
 ** MiniLibC
 ** File description:
-** strchr-tests
+** strcspn-tests
 */
 
 #include <criterion/criterion.h>

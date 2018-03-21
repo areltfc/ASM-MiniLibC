@@ -2,54 +2,53 @@
 ## EPITECH PROJECT, 2018
 ## MiniLibC
 ## File description:
-## MiniLibC
+## tests-makefile
 ##
 
-SRCS		=	src/strlen.asm		\
-			src/strchr.asm		\
-			src/rindex.asm		\
-			src/memset.asm		\
-			src/memcpy.asm		\
-			src/strcmp.asm		\
-			src/strncmp.asm		\
-			src/strcspn.asm		\
-			src/strpbrk.asm		\
-			src/memmove.asm
+SRCS	=	src/strlen-tests.c	\
+		src/strchr-tests.c	\
+		src/rindex-tests.c	\
+		src/memset-tests.c	\
+		src/memcpy-tests.c	\
+		src/strcmp-tests.c	\
+		src/strncmp-tests.c	\
+		src/strcspn-tests.c	\
+		src/strpbrk-tests.c	\
+		src/strstr-tests.c	\
+		src/memmove-tests.c	\
+		src/strcasecmp-tests.c
 
-OBJS		=	$(SRCS:.asm=.o)
+OBJS	=	$(SRCS:.c=.o)
 
-NAME		=	libasm.so
+COV1	=	$(SRCS:.c=.gcda)
+COV2	=	$(SRCS:.c=.gcno)
 
-all:			$(NAME)
+LDFLAGS	=	-lcriterion -L. -lasm
 
-$(NAME):		asm
-	gcc -fPIC -shared $(OBJS) -o $(NAME)
+CFLAGS	=	-Wextra -Wall --coverage
+CFLAGS	+=	-I include/
 
-asm:
-	nasm -f elf64 src/strlen.asm
-	nasm -f elf64 src/strchr.asm
-	nasm -f elf64 src/rindex.asm
-	nasm -f elf64 src/memset.asm
-	nasm -f elf64 src/memcpy.asm
-	nasm -f elf64 src/strcmp.asm
-	nasm -f elf64 src/strncmp.asm
-	nasm -f elf64 src/strcspn.asm
-	nasm -f elf64 src/strpbrk.asm
-	nasm -f elf64 src/memmove.asm
+NAME	=	MiniLibC-tests
 
-tests_run:		$(NAME)
-	make -C tests
-	./tests/MiniLibC-tests
+CC	=	gcc
+
+all:		$(NAME)
+
+$(NAME):	MLC $(OBJS)
+	$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) $(CFLAGS)
+
+MLC:
+	cp ../libasm.so .
 
 clean:
 	rm -f $(OBJS)
-	make -C tests/ clean
+	rm -f $(COV1)
+	rm -f $(COV2)
 
-fclean:			clean
+fclean:		clean
 	rm -f $(NAME)
-	make -C tests/ fclean
+	rm -f libasm.so
 
-re:			fclean all
-	make -C tests/ re
+re:		fclean all
 
-.PHONY:			all asm clean fclean re
+.PHONY:		all MLC clean fclean re

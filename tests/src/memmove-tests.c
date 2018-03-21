@@ -1,5 +1,5 @@
 /*
-1;4205;0c** EPITECH PROJECT, 2018
+** EPITECH PROJECT, 2018
 ** MiniLibC
 ** File description:
 ** memmove-tests

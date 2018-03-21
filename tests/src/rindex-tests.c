@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** MiniLibC
 ** File description:
-** strchr-tests
+** rindex-tests
 */
 
 #include <criterion/criterion.h>
