@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_STRLEN__
 %define __MINILIBC_STRLEN__ __MINILIBC_STRLEN__
 
+[BITS 64]
 SECTION .text
 global strlen:function
 

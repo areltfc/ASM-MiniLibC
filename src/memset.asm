@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_MEMSET__
 %define __MINILIBC_MEMSET__ __MINILIBC_MEMSET__
 
+[BITS 64]
 SECTION .text
 global memset:function
 

@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_MEMCPY__
 %define __MINILIBC_MEMCPY__ __MINILIBC_MEMCPY__
 
+[BITS 64]
 SECTION .text
 global memcpy:function
 

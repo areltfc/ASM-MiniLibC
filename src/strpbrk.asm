@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_STRPBRK__
 %define __MINILIBC_STRPBRK__ __MINILIBC_STRPBRK__
 
+[BITS 64]
 SECTION .text
 global strpbrk:function
 

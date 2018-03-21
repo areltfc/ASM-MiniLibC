@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_STRNCMP__
 %define __MINILIBC_STRNCMP__ __MINILIBC_STRNCMP__
 
+[BITS 64]
 SECTION .text
 global strncmp:function
 

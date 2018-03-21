@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_RINDEX__
 %define __MINILIBC_RINDEX__ __MINILIBC_RINDEX__
 
+[BITS 64]
 SECTION .text
 global rindex:function
 

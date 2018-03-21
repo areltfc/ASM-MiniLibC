@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_STRCHR__
 %define __MINILIBC_STRCHR__ __MINILIBC_STRCHR__
 
+[BITS 64]
 SECTION .text
 global strchr:function
 

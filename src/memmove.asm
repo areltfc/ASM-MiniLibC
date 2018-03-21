@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_MEMMOVE__
 %define __MINILIBC_MEMMOVE__ __MINILIBC_MEMMOVE__
 
+[BITS 64]
 SECTION .text
 global memmove:function
 

@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_STRSTR__
 %define __MINILIBC_STRSTR__ __MINILIBC_STRSTR__
 
+[BITS 64]
 SECTION .text
 global strstr:function
 

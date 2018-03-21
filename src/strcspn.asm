@@ -5,6 +5,7 @@
 %ifndef __MINILIBC_STRCSPN__
 %define __MINILIBC_STRCSPN__ __MINILIBC_STRCSPN__
 
+[BITS 64]
 SECTION .text
 global strcspn:function
 
