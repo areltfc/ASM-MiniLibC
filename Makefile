@@ -26,7 +26,7 @@ NAME		=	libasm.so
 all:			$(NAME)
 
 $(NAME):		asm
-	gcc -fPIC -shared $(OBJS) -o $(NAME)
+	ld -shared $(OBJS) -o $(NAME)
 
 asm:
 	nasm -f elf64 src/strlen.asm
