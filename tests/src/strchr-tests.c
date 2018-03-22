@@ -13,4 +13,5 @@ Test(strchr, strchr_base)
 	const char *str = BASE_TEST_STR;
 
 	cr_expect(strchr(str, 's') == simple_c_strchr(str, 's'));
+	cr_expect(strchr(str, 0) == simple_c_strchr(str, 0));
 }

@@ -34,7 +34,7 @@ int simple_c_strcmp(const char *p1, const char *p2)
 char *simple_c_strchr(const char *s, const int c)
 {
 	for (; *s && *s != c; ++s);
-	if (*s)
+	if (c == 0 || *s)
 		return ((char *) s);
 	return (NULL);
 }

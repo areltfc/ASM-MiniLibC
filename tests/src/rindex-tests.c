@@ -14,5 +14,6 @@ Test(rindex, rindex_base)
 
 	cr_expect(rindex(str, 'C') == str);
 	cr_expect(rindex(str, 't') == (str + strlen(str) - 1));
+	cr_expect(rindex(str, 0) == (str + strlen(str)));
 	cr_expect(rindex(str, '.') == NULL);
 }

@@ -18,11 +18,17 @@ strchr:
 
 .check_char:
 	cmp byte [rax+r11], 0
-	je .not_found		; If s[i] == 0, c was not found inside s
+	je .check_eos		; If s[i] == 0, c was not found inside s
 	cmp byte [rax+r11], sil
 	je .found		; s[i] == c
 	inc r11
 	jmp .check_char
+
+.check_eos:
+	cmp sil, 0h
+	jne .not_found
+	add rax, r11
+	jmp .ret
 
 .not_found:
 	xor rax, rax

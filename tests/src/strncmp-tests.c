@@ -18,6 +18,8 @@ Test(strncmp, strncmp_base)
 	cr_assert(strncmp(base, wrong, 5) == -1);
 	cr_assert(strncmp(empty_str, empty_str, 4) == 0);
 	cr_assert(strncmp(NULL, NULL, 0) == 0);
+	cr_assert(strncmp(empty_str, NULL, 0) == 0);
+	cr_assert(strncmp(NULL, empty_str, 0) == 0);
 	cr_assert(strncmp(empty_str, base, 10) == -97);
 	cr_assert(strncmp(base, empty_str, 10) == 97);
 }
