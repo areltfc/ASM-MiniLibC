@@ -10,9 +10,9 @@
 
 Test(rindex, rindex_base)
 {
-	const char *test = "azazerty";
+	const char *str = BASE_TEST_STR;
 
-	cr_expect((rindex(test, 'a') == (test + 2)));
-	cr_expect((rindex(test, 'z') == (test + 3)));
-	cr_expect(!rindex(test, '.'));
+	cr_expect(rindex(str, 'C') == str);
+	cr_expect(rindex(str, 't') == (str + strlen(str) - 1));
+	cr_expect(rindex(str, '.') == NULL);
 }

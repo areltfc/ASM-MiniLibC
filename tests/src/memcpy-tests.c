@@ -12,16 +12,10 @@
 
 Test(memcpy, memcpy_base)
 {
-	char *str = strdup("abc");
-	char *cpy = malloc(sizeof(char) * 3);
+	const size_t len = simple_c_strlen(BASE_TEST_STR);
+	char *str = malloc(sizeof(char) * (len + 1));
 
-	if (str == NULL || cpy == NULL)
-		abort();
-	memcpy(cpy, str, 4);
-	cr_expect(strcmp(str, cpy) == 0);
-	str[2] = 'a';
-	memcpy(cpy, str, 2);
-	cr_expect(strcmp(str, cpy) != 0);
+	memcpy(str, BASE_TEST_STR, len);
+	cr_assert(simple_c_strcmp(str, BASE_TEST_STR) == 0);
 	free(str);
-	free(cpy);
 }

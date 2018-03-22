@@ -12,30 +12,29 @@ global rindex:function
 ;; char *rindex(const char *s, int c);
 
 rindex: 
-	push rbp
+	push r8
 
 .strlen:			; strlen() recreation (see strlen.asm)
-	mov rax, rdi
+	mov r8, rdi
 
 .check_char:
-        cmp byte [rax], 0
+        cmp byte [r8], 0
         jz .finished
-        inc rax
+        inc r8
         jmp .check_char
 
 .finished:
-	sub rax, rdi
+	sub r8, rdi
 
 .rindex_preps:			; Beginning of rindex()
-	mov rbp, rax
 	mov rax, rdi		; Moving s into RAX so that we don't have to later
 
 .rindex_loop:
-	cmp rbp, 0
-	je .rindex_not_found	; If i == 0, c was not found in s
-	cmp byte [rax+rbp], sil
+	cmp byte [rax+r8], sil
 	je .rindex_found	; c was found in s
-	dec rbp
+	cmp r8, 0
+	jz .rindex_not_found	; If i == 0, c was not found in s
+	dec r8
 	jmp .rindex_loop	; Try with previous char
 
 .rindex_not_found:
@@ -43,11 +42,11 @@ rindex:
 	jmp .rindex_ret
 
 .rindex_found:
-	add rax, rbp		; Returning pointer to s[i]
+	add rax, r8		; Returning pointer to s[i]
 	jmp .rindex_ret
 
 .rindex_ret:
-	pop rbp
+	pop r8
 	ret
 
 %else

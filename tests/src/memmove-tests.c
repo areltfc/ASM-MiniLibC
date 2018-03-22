@@ -12,18 +12,20 @@
 
 Test(memmove, memmove_base)
 {
-	char *str = strdup("Salutation");
+	char *c_str = strdup(BASE_TEST_STR);
+	char *h_str = strdup(c_str);
+	const size_t len = strlen(BASE_MOVED_TEST_STR);
 
-	if (str == NULL)
-		abort();
-	memmove(str + 3, str, 5);
-	cr_expect(strcmp(str + 3, "Saluton") == 0);
-	cr_expect(strcmp(str, "SalSaluton") == 0);
-	free(str);
-	str = strdup("Salutation");
-	if (str == NULL)
-		abort();
-	memmove(str, str + 2, 3);
-	cr_expect(strcmp(str, "lututation") == 0);
-	free(str);
+	memmove(h_str, BASE_MOVED_TEST_STR, len);
+	simple_c_memmove(c_str, BASE_MOVED_TEST_STR, len);
+	cr_assert(strcmp(h_str, c_str) == 0);
+	memmove(h_str + 3, h_str, 10);
+	simple_c_memmove(c_str + 3, c_str, 10);
+	cr_assert(strcmp(h_str, c_str) == 0);
+	memmove(h_str, BASE_MOVED_TEST_STR, len);
+	simple_c_memmove(c_str, BASE_MOVED_TEST_STR, len);
+	cr_assert(strcmp(h_str, c_str) == 0);
+	memmove(h_str, NULL, 0);
+	simple_c_memmove(c_str, NULL, 0);
+	cr_assert(strcmp(h_str, c_str) == 0);
 }

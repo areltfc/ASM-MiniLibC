@@ -10,8 +10,11 @@
 
 Test(strcasecmp, strcasecmp_base)
 {
-	cr_expect(strcasecmp("aaa", "aaa") == 0);
-	cr_expect(strcasecmp("AaA", "aAa") == 0);
-	cr_expect(strcasecmp("aaa", "aaz") == -25);	
-	cr_expect(strcasecmp("aaz", "aaa") == 25);
+	const char *low_base = "abcdef";
+	const char *hi_base = "ABCDEF";
+	const char *empty_str = "";
+
+	cr_assert(strcasecmp(hi_base, hi_base) == 0);
+	cr_assert(strcasecmp(low_base, hi_base) == 0);
+	cr_assert(strcasecmp(empty_str, hi_base) == -97);
 }

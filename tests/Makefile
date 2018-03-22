@@ -5,7 +5,8 @@
 ## tests-makefile
 ##
 
-SRCS	=	src/strlen-tests.c	\
+SRCS	=	src/c-functions.c	\
+		src/strlen-tests.c	\
 		src/strchr-tests.c	\
 		src/rindex-tests.c	\
 		src/memset-tests.c	\

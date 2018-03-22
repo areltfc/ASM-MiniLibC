@@ -11,9 +11,12 @@
 
 Test(strstr, strstr_base)
 {
-	const char *s1 = "abcde";
+	const char *str = BASE_TEST_STR;
 
-	cr_expect(strstr(s1, "bcde") == (s1 + 1));
-	cr_expect(strstr(s1, "bced") == NULL);
-	cr_expect(strstr(s1, "bcdef") == NULL);
+	cr_expect(strstr(str, BASE_TEST_STR) == str);
+	cr_expect(strstr(str, "e") == (str + 1));
+	cr_expect(strstr(str, "ci est") == (str + 2));
+	cr_expect(strstr(str, "ci estz") == NULL);
+	cr_expect(strstr(str, "") == str);
+	cr_expect(strstr("", str) == NULL);
 }

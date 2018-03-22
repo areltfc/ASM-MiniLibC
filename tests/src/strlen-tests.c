@@ -10,7 +10,5 @@
 
 Test(strlen, base)
 {
-	cr_expect(strlen("t") == 1);
-	cr_expect(strlen("aaaaaaaaaa") == 10);
-	cr_expect(strlen("") == 0);
+	cr_assert(strlen(BASE_TEST_STR) == simple_c_strlen(BASE_TEST_STR));
 }

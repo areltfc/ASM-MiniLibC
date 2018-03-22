@@ -15,17 +15,20 @@ strncmp:
 	push rcx
 	push r8
 	xor rcx, rcx
+	cmp rdx, 0
+	jz .ret			; n == 0, no need to loop
 
-.strcmp_loop:
-	cmp rcx, rdx
-	je .ret			; i == n, no need to check further
+.strncmp_loop:
 	cmp byte [rdi+rcx], 0
 	jz .ret			; s1[i] == 0, going to return algorithm
 	mov al, byte [rdi+rcx]
 	cmp byte [rsi+rcx], al	; s1[i] != s2[i]
 	jne .ret
+	dec rdx
+	cmp rdx, 0
+	jz .ret			; Comparison before increment
 	inc rcx
-	jmp .strcmp_loop
+	jmp .strncmp_loop
 
 .ret:
 	xor rax, rax

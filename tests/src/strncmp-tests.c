@@ -10,12 +10,14 @@
 
 Test(strncmp, strncmp_base)
 {
-	const char *s1 = "aaa";
-	const char *s2 = "aaa";
-	const char *s3 = "aaz";
+	const char *base = "abcdef";
+	const char *wrong = "abcdf";
+	const char *empty_str = "";
 
-	cr_expect(strncmp(s1, s2, 3) == 0);
-	cr_expect(strncmp(s1, s2, 2) == 0);
-	cr_expect(strncmp(s1, s3, 3) == -25);	
-	cr_expect(strncmp(s3, s1, 3) == 25);
+	cr_assert(strncmp(base, wrong, 4) == 0);
+	cr_assert(strncmp(base, wrong, 5) == -1);
+	cr_assert(strncmp(empty_str, empty_str, 4) == 0);
+	cr_assert(strncmp(NULL, NULL, 0) == 0);
+	cr_assert(strncmp(empty_str, base, 10) == -97);
+	cr_assert(strncmp(base, empty_str, 10) == 97);
 }

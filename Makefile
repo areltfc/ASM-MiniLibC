@@ -15,7 +15,9 @@ SRCS		=	src/strlen.asm		\
 			src/strcspn.asm		\
 			src/strpbrk.asm		\
 			src/memmove.asm		\
-			src/strcasecmp.asm
+			src/strcasecmp.asm	\
+			bonus/write.asm		\
+			bonus/read.asm
 
 OBJS		=	$(SRCS:.asm=.o)
 
@@ -38,6 +40,8 @@ asm:
 	nasm -f elf64 src/strpbrk.asm
 	nasm -f elf64 src/memmove.asm
 	nasm -f elf64 src/strcasecmp.asm
+	nasm -f elf64 bonus/write.asm
+	nasm -f elf64 bonus/read.asm
 
 tests_run:		$(NAME)
 	make -C tests

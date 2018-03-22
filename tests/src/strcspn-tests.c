@@ -8,14 +8,28 @@
 #include <criterion/criterion.h>
 #include "include-tests.h"
 
+size_t simple_c_strcspn (const char *s, const char *reject)
+{
+	size_t count = 0;
+
+	while (*s != '\0')
+		if (strchr(reject, *s++) == NULL)
+			++count;
+		else
+			return (count);
+
+	return (count);
+}
+
 Test(strcspn, strcspn_base)
 {
-	const char *s1 = "abcde";
-	const char *s2 = "eb";
-	const char *s3 = ".";
-	const char *s4 = "a";
+	const char *str = BASE_TEST_STR;
 
-	cr_expect(strcspn(s1, s2) == 1);
-	cr_expect(strcspn(s1, s3) == strlen(s1));
-	cr_expect(strcspn(s1, s4) == 0);
+	cr_expect(strcspn(str, "Ceci") == simple_c_strcspn(str, "Ceci"));
+	cr_expect(strcspn(str, "i") == simple_c_strcspn(str, "i"));
+	cr_expect(strcspn(str, "test") == simple_c_strcspn(str, "test"));
+	cr_expect(strcspn(str, ";;;") == simple_c_strcspn(str, ";;;"));
+	cr_expect(strcspn(str, "zzs") == simple_c_strcspn(str, "zzs"));
+	cr_expect(strcspn(str, " ") == simple_c_strcspn(str, " "));
+
 }

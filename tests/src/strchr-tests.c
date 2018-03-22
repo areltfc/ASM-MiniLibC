@@ -10,9 +10,7 @@
 
 Test(strchr, strchr_base)
 {
-	const char *test = "azerty";
+	const char *str = BASE_TEST_STR;
 
-	cr_expect((strchr(test, 'a') == test));
-	cr_expect((strchr(test, 'z') == (test + 1)));
-	cr_expect(!strchr(test, '.'));
+	cr_expect(strchr(str, 's') == simple_c_strchr(str, 's'));
 }
