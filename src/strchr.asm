@@ -25,7 +25,7 @@ strchr:
 	jmp .check_char
 
 .check_eos:
-	cmp sil, 0h
+	cmp sil, 0h		; Maybe c == '\0', in which case NULL mustn't be returned
 	jne .not_found
 	add rax, r11
 	jmp .ret
