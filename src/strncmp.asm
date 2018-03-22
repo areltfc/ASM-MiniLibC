@@ -16,7 +16,7 @@ strncmp:
 	push r8
 	xor rcx, rcx
 	cmp rdx, 0
-	jz .ret			; n == 0, no need to loop
+	jz .empty_ret		; n == 0, no need to loop
 
 .strncmp_loop:
 	cmp byte [rdi+rcx], 0
@@ -29,6 +29,12 @@ strncmp:
 	jz .ret			; Comparison before increment
 	inc rcx
 	jmp .strncmp_loop
+
+.empty_ret:
+	xor rax, rax		; Trying a comparison would end up in a segfault
+	pop r8
+	pop rcx
+	ret
 
 .ret:
 	xor rax, rax
