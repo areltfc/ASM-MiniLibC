@@ -14,6 +14,7 @@ SRCS		=	src/strlen.asm		\
 			src/strncmp.asm		\
 			src/strcspn.asm		\
 			src/strpbrk.asm		\
+			src/strstr.asm		\
 			src/memmove.asm		\
 			src/strcasecmp.asm	\
 			bonus/write.asm		\
@@ -23,25 +24,21 @@ OBJS		=	$(SRCS:.asm=.o)
 
 NAME		=	libasm.so
 
+ASM		=	nasm
+
+ASMFLAGS	+=	-f elf64
+
+LD		=	ld
+
+LDFLAGS		+=	-shared
+
 all:			$(NAME)
 
-$(NAME):		asm
-	ld -shared $(OBJS) -o $(NAME)
+$(NAME):		$(OBJS)
+	$(LD) $(LDFLAGS) $(OBJS) -o $(NAME)
 
-asm:
-	nasm -f elf64 src/strlen.asm
-	nasm -f elf64 src/strchr.asm
-	nasm -f elf64 src/rindex.asm
-	nasm -f elf64 src/memset.asm
-	nasm -f elf64 src/memcpy.asm
-	nasm -f elf64 src/strcmp.asm
-	nasm -f elf64 src/strncmp.asm
-	nasm -f elf64 src/strcspn.asm
-	nasm -f elf64 src/strpbrk.asm
-	nasm -f elf64 src/memmove.asm
-	nasm -f elf64 src/strcasecmp.asm
-	nasm -f elf64 bonus/write.asm
-	nasm -f elf64 bonus/read.asm
+%.o:			%.asm
+	$(ASM) $(ASMFLAGS) $< -o $@
 
 tests_run:		$(NAME)
 	make -C tests
